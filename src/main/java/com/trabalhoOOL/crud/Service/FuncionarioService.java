@@ -27,12 +27,12 @@ public class FuncionarioService {
         return funcionarioRepository.save(funcionario);
     }
 
-    public Funcionario updateFuncionario(Long id, Funcionario funcionarioDetails) throws Exception {
+    public Funcionario updateFuncionario(Long id, Funcionario funcionario) throws Exception {
         Optional<Funcionario> existingFuncionario = funcionarioRepository.findById(id);
         if (existingFuncionario.isPresent()) {
             Funcionario updatedFuncionario = existingFuncionario.get();
-            updatedFuncionario.setNome(funcionarioDetails.getNome());
-            updatedFuncionario.setCargo(funcionarioDetails.getCargo());
+            updatedFuncionario.setNome(funcionario.getNome());
+            updatedFuncionario.setCargo(funcionario.getCargo());
             return funcionarioRepository.save(updatedFuncionario);
         } else {
             throw new Exception("Funcionario não encontrado.");

@@ -33,15 +33,15 @@ public class PessoaService {
         pessoaRepository.deleteById(id);
     }
 
-    public Pessoa updatePessoa(Long id, Pessoa pessoaDetails) throws Exception {
+    public Pessoa updatePessoa(Long id, Pessoa pessoad) throws Exception {
         Pessoa pessoa = pessoaRepository.findById(id)
                 .orElseThrow(() -> new Exception("Pessoa não encontrada"));
 
-        pessoa.setNome(pessoaDetails.getNome());
-        if (pessoa instanceof Funcionario && pessoaDetails instanceof Funcionario) {
-            ((Funcionario) pessoa).setCargo(((Funcionario) pessoaDetails).getCargo());
-        } else if (pessoa instanceof Cliente && pessoaDetails instanceof Cliente) {
-            ((Cliente) pessoa).setTelefone(((Cliente) pessoaDetails).getTelefone());
+        pessoa.setNome(pessoa.getNome());
+        if (pessoa instanceof Funcionario && pessoad instanceof Funcionario) {
+            ((Funcionario) pessoa).setCargo(((Funcionario) pessoad).getCargo());
+        } else if (pessoa instanceof Cliente && pessoad instanceof Cliente) {
+            ((Cliente) pessoa).setTelefone(((Cliente) pessoad).getTelefone());
         }
 
         return pessoaRepository.save(pessoa);

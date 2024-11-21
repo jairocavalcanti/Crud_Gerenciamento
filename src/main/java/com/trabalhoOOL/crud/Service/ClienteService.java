@@ -27,12 +27,12 @@ public class ClienteService {
         return clienteRepository.save(cliente);
     }
 
-    public Cliente updateCliente(Long id, Cliente clienteDetails) throws Exception {
+    public Cliente updateCliente(Long id, Cliente cliente) throws Exception {
         Optional<Cliente> existingCliente = clienteRepository.findById(id);
         if (existingCliente.isPresent()) {
             Cliente updatedCliente = existingCliente.get();
-            updatedCliente.setNome(clienteDetails.getNome());
-            updatedCliente.setTelefone(clienteDetails.getTelefone());
+            updatedCliente.setNome(cliente.getNome());
+            updatedCliente.setTelefone(cliente.getTelefone());
             return clienteRepository.save(updatedCliente);
         } else {
             throw new Exception("Cliente não encontrado.");
