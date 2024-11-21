@@ -1,170 +1,76 @@
-const apiUrlPessoa = '/pessoas'; // URL base para a API de pessoas
+const baseUrl = 'http://localhost:8080/pessoas';  // URL da API para gerenciar as pessoas
 
-// Função para obter todas as pessoas
-async function getAllPessoas() {
-    try {
-        const response = await fetch(apiUrlPessoa);
-        if (response.ok) {
-            const pessoas = await response.json();
-            console.log('Pessoas:', pessoas);
-            displayPessoas(pessoas); // Exibe as pessoas na tabela
-        } else {
-            console.error('Erro ao obter pessoas', response.status);
-        }
-    } catch (error) {
-        console.error('Erro na requisição', error);
-    }
-}
-
-// Função para obter uma pessoa por ID
-async function getPessoaById(id) {
-    try {
-        const response = await fetch(`${apiUrlPessoa}/${id}`);
-        if (response.ok) {
-            const pessoa = await response.json();
-            console.log('Pessoa:', pessoa);
-            displayPessoa(pessoa); // Exibe a pessoa encontrada
-        } else {
-            console.error('Pessoa não encontrada', response.status);
-        }
-    } catch (error) {
-        console.error('Erro na requisição', error);
-    }
-}
-
-// Função para criar uma nova pessoa
-async function createPessoa(pessoa) {
-    try {
-        const response = await fetch(`${apiUrlPessoa}/postpessoas`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(pessoa)
-        });
-        if (response.ok) {
-            const savedPessoa = await response.json();
-            console.log('Pessoa criada:', savedPessoa);
-            alert('Pessoa criada com sucesso!');
-        } else {
-            console.error('Erro ao criar pessoa', response.status);
-        }
-    } catch (error) {
-        console.error('Erro na requisição', error);
-    }
-}
-
-// Função para atualizar uma pessoa
-async function updatePessoa(id, pessoaDetails) {
-    try {
-        const response = await fetch(`${apiUrlPessoa}/${id}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(pessoaDetails)
-        });
-        if (response.ok) {
-            const updatedPessoa = await response.json();
-            console.log('Pessoa atualizada:', updatedPessoa);
-            alert('Pessoa atualizada com sucesso!');
-        } else {
-            console.error('Erro ao atualizar pessoa', response.status);
-        }
-    } catch (error) {
-        console.error('Erro na requisição', error);
-    }
-}
-
-// Função para deletar uma pessoa
-async function deletePessoa(id) {
-    try {
-        const response = await fetch(`${apiUrlPessoa}/${id}`, {
-            method: 'DELETE'
-        });
-        if (response.ok) {
-            console.log('Pessoa deletada');
-            alert('Pessoa deletada com sucesso!');
-        } else {
-            console.error('Erro ao deletar pessoa', response.status);
-        }
-    } catch (error) {
-        console.error('Erro na requisição', error);
-    }
-}
-
-// Função para exibir as pessoas na tabela
-function displayPessoas(pessoas) {
-    const tableBody = document.getElementById('pessoas-table-body');
-    tableBody.innerHTML = ''; // Limpa a tabela antes de preencher
+// Função para buscar e exibir as pessoas
+async function fetchPessoas() {
+    const response = await fetch(baseUrl);
+    const pessoas = await response.json();
+    const pessoaList = document.getElementById('pessoa-list');
+    pessoaList.innerHTML = '';  // Limpa a lista de pessoas
 
     pessoas.forEach(pessoa => {
-        const row = document.createElement('tr');
+        const listItem = document.createElement('li');
+        listItem.textContent = `ID: ${pessoa.id}, Nome: ${pessoa.nome}, Tipo: ${pessoa.tipo}`; // Exibe o campo "tipo"
 
-        const tdId = document.createElement('td');
-        tdId.textContent = pessoa.id;
+        if (pessoa.tipo === 'Cliente') {
+            listItem.textContent += `, Telefone: ${pessoa.telefone}`; // Adiciona o telefone para clientes
+        } else if (pessoa.tipo === 'Funcionario') {
+            listItem.textContent += `, Cargo: ${pessoa.cargo}`; // Adiciona o cargo para funcionários
+        }
 
-        const tdNome = document.createElement('td');
-        tdNome.textContent = pessoa.nome;
-
-        const tdTipoPessoa = document.createElement('td');
-        tdTipoPessoa.textContent = pessoa.tipoPessoa ? pessoa.tipoPessoa() : 'N/A'; // Usando polimorfismo
-
-        row.appendChild(tdId);
-        row.appendChild(tdNome);
-        row.appendChild(tdTipoPessoa);
-
-        tableBody.appendChild(row);
+        pessoaList.appendChild(listItem);
     });
 }
 
-// Função para exibir uma pessoa específica (por ID)
-function displayPessoa(pessoa) {
-    const tableBody = document.getElementById('pessoas-table-body');
-    tableBody.innerHTML = ''; // Limpa a tabela antes de exibir uma pessoa
+// Função para editar uma pessoa
+async function editarPessoa(event) {
+    event.preventDefault();
+    const pessoaId = document.getElementById('pessoa-id-editar').value;
+    const nome = document.getElementById('novo-nome').value;
+    const cargo = document.getElementById('novo-cargo').value;
 
-    const row = document.createElement('tr');
+    const pessoa = { nome, cargo };
 
-    const tdId = document.createElement('td');
-    tdId.textContent = pessoa.id;
+    const response = await fetch(`${baseUrl}/${pessoaId}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(pessoa)
+    });
 
-    const tdNome = document.createElement('td');
-    tdNome.textContent = pessoa.nome;
-
-    const tdTipoPessoa = document.createElement('td');
-    tdTipoPessoa.textContent = pessoa.tipoPessoa ? pessoa.tipoPessoa() : 'N/A'; // Usando polimorfismo
-
-    row.appendChild(tdId);
-    row.appendChild(tdNome);
-    row.appendChild(tdTipoPessoa);
-
-    tableBody.appendChild(row);
+    if (response.ok) {
+        alert('Pessoa editada com sucesso');
+        fetchPessoas();  // Atualiza a lista de pessoas
+    } else {
+        alert('Erro ao editar pessoa');
+    }
 }
 
-// Função para preencher o formulário com os dados de uma pessoa para edição
-function fillFormForEdit(pessoa) {
-    document.getElementById('id').value = pessoa.id;
-    document.getElementById('nome').value = pessoa.nome;
-    document.getElementById('tipoPessoa').value = pessoa.tipoPessoa;
+// Função para excluir uma pessoa
+async function excluirPessoa(event) {
+    event.preventDefault();
+    const pessoaId = document.getElementById('pessoa-id-excluir').value;
+
+    const confirmDelete = confirm("Tem certeza que deseja excluir esta pessoa?");
+    if (confirmDelete) {
+        const response = await fetch(`${baseUrl}/${pessoaId}`, {
+            method: 'DELETE'
+        });
+
+        if (response.ok) {
+            alert('Pessoa excluída com sucesso');
+            fetchPessoas();  // Atualiza a lista de pessoas
+        } else {
+            alert('Erro ao excluir pessoa');
+        }
+    }
 }
 
-// Exemplo de uso
-getAllPessoas(); // Para pegar todas as pessoas
-getPessoaById(1); // Para pegar uma pessoa com ID 1
+// Inicialização dos formulários e da lista de pessoas
+document.getElementById('editar-pessoa-form').addEventListener('submit', editarPessoa);
+document.getElementById('excluir-pessoa-form').addEventListener('submit', excluirPessoa);
 
-// Exemplo de criação de uma pessoa
-const newPessoa = {
-    nome: 'Ana Silva',
-    tipoPessoa: 'Fisica' // Exemplo de tipo de pessoa, dependendo do seu modelo
+// Carrega a lista de pessoas ao abrir a página
+window.onload = () => {
+    fetchPessoas();
 };
-createPessoa(newPessoa);
-
-// Exemplo de atualização de uma pessoa
-const updatedPessoa = {
-    nome: 'Ana Silva Atualizada',
-    tipoPessoa: 'Juridica'
-};
-updatePessoa(1, updatedPessoa);
-
-// Exemplo de deletação de uma pessoa
-deletePessoa(1);

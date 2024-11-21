@@ -1,64 +1,42 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerenciamento de Clientes</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Referência ao CSS, se houver -->
+    <title>Gerenciar Clientes</title>
+    <script src="/js/ClienteManager.js" defer></script>
 </head>
-
 <body>
+    <h1>Gerenciamento de Clientes</h1>
 
-    <h1>Cadastro e Gerenciamento de Clientes</h1>
+    <h2>Lista de Clientes</h2>
+    <ul id="cliente-list"></ul>
 
-    <!-- Formulário de Cadastro e Edição -->
-    <section>
-        <h2>Formulário de Cliente</h2>
-        <form id="cliente-form" onsubmit="event.preventDefault(); submitForm();">
-            <label for="id">ID:</label>
-            <input type="number" id="id" disabled><br><br>
+    <h2>Criar Cliente</h2>
+    <form id="criar-cliente-form">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" required>
+        <label for="telefone">Telefone:</label>
+        <input type="text" id="telefone" required>
+        <button type="submit">Criar</button>
+    </form>
 
-            <label for="nome">Nome:</label>
-            <input type="text" id="nome" required><br><br>
+    <h2>Editar Cliente</h2>
+    <form id="editar-cliente-form">
+        <label for="cliente-id-editar">ID:</label>
+        <input type="number" id="cliente-id-editar" required>
+        <label for="novo-nome">Novo Nome:</label>
+        <input type="text" id="novo-nome" required>
+        <label for="novo-telefone">Novo Telefone:</label>
+        <input type="text" id="novo-telefone" required>
+        <button type="submit">Editar</button>
+    </form>
 
-            <label for="email">Email:</label>
-            <input type="email" id="email" required><br><br>
-
-            <label for="telefone">Telefone:</label>
-            <input type="tel" id="telefone" required><br><br>
-
-            <button type="submit">Salvar Cliente</button>
-        </form>
-    </section>
-
-    <!-- Tabela de Exibição dos Clientes -->
-    <section>
-        <h2>Lista de Clientes</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nome</th>
-                    <th>Email</th>
-                    <th>Telefone</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody id="clientes-table-body">
-                <!-- Os clientes serão inseridos aqui dinamicamente -->
-            </tbody>
-        </table>
-    </section>
-
-    <!-- Botões de Ação -->
-    <section>
-        <h2>Ações</h2>
-        <button onclick="getAllClientes()">Carregar Clientes</button>
-        <button onclick="getClienteById(1)">Buscar Cliente por ID (Exemplo)</button>
-    </section>
-
-    <script src="/js/ClienteManager.js"></script> <!-- Referência ao JavaScript -->
+    <h2>Excluir Cliente</h2>
+    <form id="excluir-cliente-form">
+        <label for="cliente-id-excluir">ID:</label>
+        <input type="number" id="cliente-id-excluir" required>
+        <button type="submit">Excluir</button>
+    </form>
 </body>
-
 </html>
