@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciamento de Clientes</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Referência ao CSS, se houver -->
+</head>
+
+<body>
+
+    <h1>Cadastro e Gerenciamento de Clientes</h1>
+
+    <!-- Formulário de Cadastro e Edição -->
+    <section>
+        <h2>Formulário de Cliente</h2>
+        <form id="cliente-form" onsubmit="event.preventDefault(); submitForm();">
+            <label for="id">ID:</label>
+            <input type="number" id="id" disabled><br><br>
+
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" required><br><br>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" required><br><br>
+
+            <label for="telefone">Telefone:</label>
+            <input type="tel" id="telefone" required><br><br>
+
+            <button type="submit">Salvar Cliente</button>
+        </form>
+    </section>
+
+    <!-- Tabela de Exibição dos Clientes -->
+    <section>
+        <h2>Lista de Clientes</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Telefone</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody id="clientes-table-body">
+                <!-- Os clientes serão inseridos aqui dinamicamente -->
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Botões de Ação -->
+    <section>
+        <h2>Ações</h2>
+        <button onclick="getAllClientes()">Carregar Clientes</button>
+        <button onclick="getClienteById(1)">Buscar Cliente por ID (Exemplo)</button>
+    </section>
+
+    <script src="/js/ClienteManager.js"></script> <!-- Referência ao JavaScript -->
+</body>
+
+</html>

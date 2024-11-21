@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciamento de Funcionários</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"], input[type="number"], button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        button {
+            cursor: pointer;
+        }
+        #funcionarios-list {
+            margin-top: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Gerenciamento de Funcionários</h1>
+
+        <!-- Formulário para criar ou atualizar funcionário -->
+        <form id="funcionario-form">
+            <h2>Cadastrar/Atualizar Funcionário</h2>
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" required>
+            
+            <label for="cargo">Cargo:</label>
+            <input type="text" id="cargo" required>
+            
+            <label for="salario">Salário:</label>
+            <input type="number" id="salario" required>
+            
+            <button type="submit">Salvar Funcionário</button>
+        </form>
+
+        <!-- Seção de operações -->
+        <div>
+            <button onclick="getAllFuncionarios()">Listar Funcionários</button>
+            <br><br>
+            <label for="id">Buscar por ID:</label>
+            <input type="number" id="id">
+            <button onclick="getFuncionarioById(document.getElementById('id').value)">Buscar Funcionário</button>
+            <br><br>
+            <label for="delete-id">Deletar por ID:</label>
+            <input type="number" id="delete-id">
+            <button onclick="deleteFuncionario(document.getElementById('delete-id').value)">Deletar Funcionário</button>
+        </div>
+
+        <!-- Lista de funcionários -->
+        <div id="funcionarios-list">
+            <h2>Lista de Funcionários</h2>
+            <table id="funcionarios-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Cargo</th>
+                        <th>Salário</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Funcionários serão listados aqui -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="/js/FuncionarioManager.js"></script>
+
+</body>
+</html>
