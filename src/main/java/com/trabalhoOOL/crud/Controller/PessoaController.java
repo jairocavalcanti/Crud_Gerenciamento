@@ -27,8 +27,8 @@ public class PessoaController {
     @Autowired
     private PessoaService pessoaService;
 
-    @GetMapping
-    public List<Pessoa> getAllPessoas() {
+    @GetMapping()
+    public List<Pessoa> getAllPessoass() {
         return pessoaService.getAllPessoas();
     }
 
@@ -53,15 +53,6 @@ public class PessoaController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
-    }
-
-    @GetMapping("/pessoas")
-    public List<Pessoa> getAllPessoasyt() {
-        List<Pessoa> pessoas = pessoaService.getAllPessoas();
-        pessoas.forEach(pessoa -> {
-            System.out.println("Tipo de pessoa: " + pessoa.tipoPessoa()); // Usando polimorfismo
-        });
-        return pessoas;
     }
 
     @DeleteMapping("/{id}")
