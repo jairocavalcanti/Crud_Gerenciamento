@@ -1,42 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tela Inicial</title>
-    <style>
-        /* Estilo simples para a tela inicial */
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f4f4f9;
-            margin: 0;
-        }
-
-        .container {
-            text-align: center;
-        }
-
-        button {
-            font-size: 18px;
-            padding: 10px 20px;
-            margin: 15px;
-            cursor: pointer;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-
-        button:hover {
-            background-color: #45a049;
-        }
-    </style>
+    <link rel="stylesheet" href="/css/paginainicial.css">
 </head>
+
 <body>
     <div class="container">
         <h1>Bem-vindo ao Sistema</h1>
@@ -46,14 +17,15 @@
         <button onclick="window.location.href='cliente.html'">Gerenciar Clientes</button>
         <button onclick="window.location.href='funcionario.html'">Gerenciar Funcionários</button>
         <!-- Novo botão para Gerenciar Pessoas -->
-    
-          <!-- Lista de Pessoas (será carregada pelo JavaScript) -->
-          <div class="pessoa-list-container">
+
+        <!-- Lista de Pessoas (será carregada pelo JavaScript) -->
+        <div class="pessoa-list-container">
             <h2>Lista de Pessoas</h2>
-            <ul id="pessoa-list"></ul>  <!-- Aqui será exibida a lista de pessoas -->
+            <ul id="pessoa-list"></ul> <!-- Aqui será exibida a lista de pessoas -->
         </div>
 
     </div>
     <script src="/js/PessoaManager.js" defer></script>
 </body>
+
 </html>
