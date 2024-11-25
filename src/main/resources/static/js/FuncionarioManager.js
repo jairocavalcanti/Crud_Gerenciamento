@@ -34,7 +34,7 @@ async function criarFuncionario(event) {
         alert('Funcionário criado com sucesso');
         fetchFuncionarios();
     } else {
-        alert('Erro ao criar funcionário');
+        alert('Erro ao criar funcionario!');
     }
 }
 
@@ -59,7 +59,7 @@ async function editarFuncionario(event) {
         alert('Funcionário editado com sucesso');
         fetchFuncionarios();
     } else {
-        alert('Erro ao editar funcionário');
+        alert('Erro ao editar funcionário : ID não existente na base de dados');
     }
 }
 

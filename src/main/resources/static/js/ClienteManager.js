@@ -34,7 +34,7 @@ async function criarCliente(event) {
         alert('Cliente criado com sucesso');
         fetchClientes();
     } else {
-        alert('Erro ao criar cliente');
+        alert('Erro ao criar cliente!');
     }
 }
 
@@ -59,7 +59,7 @@ async function editarCliente(event) {
         alert('Cliente editado com sucesso');
         fetchClientes();
     } else {
-        alert('Erro ao editar cliente');
+        alert('Erro ao editar cliente : ID não existente na base de dados');
     }
 }
 

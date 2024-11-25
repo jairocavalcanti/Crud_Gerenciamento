@@ -44,12 +44,12 @@ public class ClienteController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Cliente> updateCliente(@PathVariable Long id, @RequestBody Cliente clienteDetails) {
+    public ResponseEntity<String> updateCliente(@PathVariable Long id, @RequestBody Cliente clienteDetails) {
         try {
             Cliente updatedCliente = clienteService.updateCliente(id, clienteDetails);
-            return ResponseEntity.ok(updatedCliente);
+            return ResponseEntity.ok("Cliente atualizado com sucesso: " + updatedCliente.getNome());
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
     }
 

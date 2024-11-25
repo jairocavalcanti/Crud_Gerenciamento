@@ -44,12 +44,12 @@ public class FuncionarioController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Funcionario> updateFuncionario(@PathVariable Long id, @RequestBody Funcionario funcionarioDetails) {
+    public ResponseEntity<String> updateFuncionario(@PathVariable Long id, @RequestBody Funcionario funcionarioDetails) {
         try {
             Funcionario updatedFuncionario = funcionarioService.updateFuncionario(id, funcionarioDetails);
-            return ResponseEntity.ok(updatedFuncionario);
+            return ResponseEntity.ok("Funcionário atualizado com sucesso: " + updatedFuncionario.getNome());
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
     }
 
