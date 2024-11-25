@@ -14,17 +14,24 @@
         <p>Escolha uma opção abaixo:</p>
 
         <!-- Botões para redirecionar para as páginas -->
-        <button onclick="window.location.href='cliente.html'">Gerenciar Clientes</button>
-        <button onclick="window.location.href='funcionario.html'">Gerenciar Funcionários</button>
-        <!-- Novo botão para Gerenciar Pessoas -->
-
-        <!-- Lista de Pessoas (será carregada pelo JavaScript) -->
-        <div class="pessoa-list-container">
-            <h2>Lista de Pessoas</h2>
-            <ul id="pessoa-list"></ul> <!-- Aqui será exibida a lista de pessoas -->
+        <div class="buttons-container">
+            <button onclick="window.location.href='cliente.html'">Gerenciar Clientes</button>
+            <button onclick="window.location.href='funcionario.html'">Gerenciar Funcionários</button>
         </div>
 
+        <!-- Listas de Pessoas -->
+        <div class="listas-container">
+            <div class="clientes-container">
+                <h2>Lista de Clientes</h2>
+                <ul id="cliente-list"></ul>
+            </div>
+            <div class="funcionarios-container">
+                <h2>Lista de Funcionários</h2>
+                <ul id="funcionario-list"></ul>
+            </div>
+        </div>
     </div>
+
     <script src="/js/PessoaManager.js" defer></script>
 </body>
 

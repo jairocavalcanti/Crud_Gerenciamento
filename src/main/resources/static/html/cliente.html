@@ -24,34 +24,35 @@
     </div>
 
 
-    <form id="criar-cliente-form">
-        <h2>Criar Cliente</h2>
-        <label for="nome">Nome:</label>
-        <input type="text" id="nome" required>
-        <label for="telefone">Telefone:</label>
-        <input type="text" id="telefone" required>
-        <button type="submit">Criar</button>
-    </form>
+    <div class="forms-container">
+        <form id="criar-cliente-form">
+            <h2>Criar Cliente</h2>
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" required>
+            <label for="telefone">Telefone:</label>
+            <input type="text" id="telefone" required>
+            <button type="submit">Criar</button>
+        </form>
+    
+        <form id="editar-cliente-form">
+            <h2>Editar Cliente</h2>
+            <label for="cliente-id-editar">ID:</label>
+            <input type="number" id="cliente-id-editar" required>
+            <label for="novo-nome">Novo Nome:</label>
+            <input type="text" id="novo-nome" required>
+            <label for="novo-telefone">Novo Telefone:</label>
+            <input type="text" id="novo-telefone" required>
+            <button type="submit">Editar</button>
+        </form>
+    
+        <form id="excluir-cliente-form">
+            <h2>Excluir Cliente</h2>
+            <label for="cliente-id-excluir">ID:</label>
+            <input type="number" id="cliente-id-excluir" required>
+            <button class="excluir-button" type="submit">Excluir</button>
+        </form>
+    </div>
 
-
-    <form id="editar-cliente-form">
-        <h2>Editar Cliente</h2>
-        <label for="cliente-id-editar">ID:</label>
-        <input type="number" id="cliente-id-editar" required>
-        <label for="novo-nome">Novo Nome:</label>
-        <input type="text" id="novo-nome" required>
-        <label for="novo-telefone">Novo Telefone:</label>
-        <input type="text" id="novo-telefone" required>
-        <button type="submit">Editar</button>
-    </form>
-
-
-    <form id="excluir-cliente-form">
-        <h2>Excluir Cliente</h2>
-        <label for="cliente-id-excluir">ID:</label>
-        <input type="number" id="cliente-id-excluir" required>
-        <button type="submit">Excluir</button>
-    </form>
 </body>
 
 </html>

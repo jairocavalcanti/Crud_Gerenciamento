@@ -95,6 +95,43 @@ h1 {
     align-items: center;
 }
 
+/* Contêiner flexível para os formulários */
+.forms-container {
+    display: flex;
+    gap: 0;
+    /* Espaço entre os formulários */
+    justify-content: center;
+    /* Centraliza os formulários */
+    flex-wrap: wrap;
+    /* Permite quebra de linha se necessário */
+    margin-bottom: 2rem;
+}
+
+/* Ajuste dos formulários individuais dentro do contêiner */
+.forms-container form {
+    flex: 1;
+    /* Faz com que os formulários dividam o espaço igualmente */
+    max-width: 400px;
+    /* Define uma largura máxima */
+    min-width: 200px;
+    /* Define uma largura mínima */
+    background: #ffffff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 1rem;
+}
+
+/* Para dispositivos menores */
+@media (max-width: 600px) {
+    .forms-container {
+        flex-direction: column;
+        /* Empilha os formulários verticalmente */
+        gap: 1rem;
+        /* Menor espaço entre os formulários */
+    }
+}
+
 h2 {
     font-size: 1.8rem;
     color: #34495e;
@@ -170,12 +207,31 @@ form button {
     transition: background-color 0.3s ease;
 }
 
+form .excluir-button {
+    background: #d30000;
+    color: #ffffff;
+    padding: 0.7rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
 form button:hover {
     background-color: #2980b9;
 }
 
+form .excluir-button:hover {
+    background: #ff0000;
+}
+
 form button:active {
     background-color: #1c5d82;
+}
+
+form .excluir-button:active {
+    background: #cf0000;
 }
 
 /* Responsividade */
