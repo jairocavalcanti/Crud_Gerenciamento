@@ -1,0 +1,14 @@
+Todos participaram de alguma forma no trabalho, tanto ajudando no back-end, tanto na colaboração para fazer uma interface no front-end.
+
+Jairo Cavalcanti:
+Implementação das classes base e subclasses para aplicar o conceito de herança.
+
+Ryan Nolasco:
+Desenvolvimento e aplicação do polimorfismo nos métodos principais.
+
+Rafael Barcelos de Aquino Moura:
+Implementação do tratamento de exceções para garantir a robustez do sistema.
+
+Rikelme Mindelo Biague:
+Configuração e uso de coleções para gerenciar os dados no sistema.
+
